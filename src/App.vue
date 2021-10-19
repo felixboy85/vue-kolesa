@@ -228,7 +228,7 @@
               >
                 <div
                   :data-id="item.id"
-                  v-for="item in allItems"
+                  v-for="item in filterItems"
                   :key="item.id"
                   class="main__goods-item main__goods-item--new"
                 >
@@ -620,6 +620,14 @@ export default {
   },
   computed: {
     allItems() {
+      return [...this.clothes, ...this.accesories].sort((a, b) => Number(b.span) - Number(a.span));
+    },
+    filterItems() {
+      if (this.activeTabKey === 'clothes') {
+        return [...this.clothes];
+      } if (this.activeTabKey === 'accesories') {
+        return [...this.accesories];
+      }
       return [...this.clothes, ...this.accesories].sort((a, b) => Number(b.span) - Number(a.span));
     },
   },
