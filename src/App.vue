@@ -9,14 +9,14 @@
               <button class="header__hamburger-btn">
                 <img
                   class="header__hamburger-img"
-                  src="src/assets/images/burger.svg"
+                  src="../src/assets/images/burger.svg"
                   alt="Меню"
                 />
               </button>
               <a class="header__logo" href="#"
                 ><img
                   class="header__logo-img"
-                  src="/src/assets/images/header_logo.svg"
+                  src="../src/assets/images/header_logo.svg"
                   alt="Kolesa Logo"
               /></a>
               <form class="header__form" action="#">
@@ -24,7 +24,7 @@
                 <button class="header__search">
                   <img
                     class="header__img"
-                    src="/src/assets/images/search-icon.svg"
+                    src="../src/assets/images/search-icon.svg"
                     alt="Поиск"
                   />
                 </button>
@@ -38,7 +38,7 @@
               >
                 <img
                   class="header__ava"
-                  src="src/assets/images/user.png"
+                  src="../src/assets/images/user.png"
                   alt="Деда Рик"
                 />
                 <div class="header__user-info">
@@ -56,7 +56,7 @@
               <button type="button" class="header__right-btn">
                 <img
                   class="header__right-img"
-                  src="src/assets/images/search-mobile.svg"
+                  src="../src/assets/images/search-mobile.svg"
                   alt="Поиск"
                 />
               </button>
@@ -74,14 +74,14 @@
               <a class="hamburger__menu-logo__link" href="#"
                 ><img
                   class="hamburger__menu-img"
-                  src="src/assets/images/header_logo.svg"
+                  src="../src/assets/images/header_logo.svg"
                   alt="Логотип"
               /></a>
             </div>
             <a class="hamburger__menu-user">
               <img
                 class="hamburger__menu-ava"
-                src="src/assets/images/user.png"
+                src="../src/assets/images/user.png"
                 alt="Аватарка"
               />
               <div class="hamburger__menu-name">
@@ -177,12 +177,12 @@
               <div class="banner">
                 <img
                   class="banner__img"
-                  src="/src/assets/images/banner.jpg"
+                  src="../src/assets/images/banner.jpg"
                   alt="Баннер"
                 />
                 <img
                   class="banner__img-small"
-                  src="/src/assets/images/banner-small.jpg"
+                  src="../src/assets/images/banner-small.jpg"
                   alt="Баннер"
                 />
               </div>
@@ -190,7 +190,7 @@
                 <a class="btn__howto btn__howto-green" href="#">
                   <img
                     class="btn__howto-img"
-                    src="src/assets/images/plus-icon.png"
+                    src="../src/assets/images/plus-icon.png"
                     alt="Плюс"
                   />
                   Получить баллы</a
@@ -198,14 +198,14 @@
                 <a class="btn__howto btn__howto-yellow" href="#"
                   ><img
                     class="btn__howto-img"
-                    src="src/assets/images/questuons-icon.png"
+                    src="../src/assets/images/questuons-icon.png"
                     alt="Вопрос"
                   />Как получить баллы</a
                 >
                 <a class="btn__howto btn__howto-blue" href="#"
                   ><img
                     class="btn__howto-img"
-                    src="src/assets/images/gift-icon.png"
+                    src="../src/assets/images/gift-icon.png"
                     alt="Подарок"
                   />Подарить баллы</a
                 >
@@ -233,7 +233,34 @@
                   Аксессуары
                 </button>
               </div>
-              <div class="main__goods main__goods--active"></div>
+              <div
+                class="main__goods main__goods--active"
+                v-for="item in allItems"
+                :key="item.id"
+              >
+                <div
+                  :data-id="item.id"
+                  class="main__goods-item main__goods-item--new"
+                >
+                  <div class="main__goods-pic">
+                    <img class="main__goods-img"
+                    :src="item.image"
+                    :alt="item.alt" />
+                    ${span ? '<span class="new">new</span>' : ''}
+                  </div>
+                  <div class="main__goods-descr">
+                    <div class="main__goods-price">{{item.price}}</div>
+                    <h3 class="main__goods-title">{{item.title}}</h3>
+                    <p class="main__goods-size">{{item.size}}</p>
+                    <button
+                      @click="openModal"
+                      class="main__btn main__btn-goods visual-hidden"
+                    >
+                      Заказать
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div class="main__clothes d-none"></div>
               <div class="main__acc d-none"></div>
             </div>
@@ -251,19 +278,19 @@
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="src/assets/images/instagram.svg"
+                    src="../src/assets/images/instagram.svg"
                     alt="Инстаграм"
                 /></a>
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="src/assets/images/youtube.svg"
+                    src="../src/assets/images/youtube.svg"
                     alt="Ютюб"
                 /></a>
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="src/assets/images/vk.svg"
+                    src="../src/assets/images/vk.svg"
                     alt="Вконтакте"
                 /></a>
               </div>
@@ -280,24 +307,25 @@
       </footer>
 
       <!-- Modal -->
-      <div class="overlay">
+      <div :class="{show: isShowModal}"
+      class="overlay">
         <div class="modal">
           <!-- <div class="modal__top">
                     <button class="modal__back-btn">
                         <img class="modal__back-img"
-                        src="src/assets/images/arrow-back-bold.svg"
+                        src="../src/assets/images/arrow-back-bold.svg"
                         alt="Назад">
                     </button>
                     <a class="header__logo"
                     href="#">
                     <img class="header__logo-img"
-                    src="/src/assets/images/header_logo.svg"
+                    src="../src/assets/images/header_logo.svg"
                     alt="Kolesa Logo"></a>
                     <form class="header__right-search">
                         <input class="header__right-input" type="text" placeholder="Поиск">
                         <button class="header__right-btn">
                             <img class="header__right-img"
-                            src="src/assets/images/search-mobile.svg"
+                            src="../src/assets/images/search-mobile.svg"
                             alt="Поиск">
                         </button>
                     </form>
@@ -305,23 +333,23 @@
           <div class="modal__left">
             <img
               class="modal__img"
-              src="/src/assets/images/main-img.png"
+              src="../src/assets/images/main-img.png"
               alt="Толстовка"
             />
             <div class="modal__thumbnails">
               <img
                 class="modal__thumbnail"
-                src="/src/assets/images/image1.png"
+                src="../src/assets/images/image1.png"
                 alt="Мини-картинка-1"
               />
               <img
                 class="modal__thumbnail modal__thumbnail--active"
-                src="/src/assets/images/image2.png"
+                src="../src/assets/images/image2.png"
                 alt="Мини-картинка-1"
               />
               <img
                 class="modal__thumbnail"
-                src="/src/assets/images/image3.png"
+                src="../src/assets/images/Image3.png"
                 alt="Мини-картинка-1"
               />
             </div>
@@ -410,8 +438,9 @@
           </div>
           <div class="modal__close">
             <img
+              @click="closeModal"
               class="close__btn"
-              src="/src/assets/images/close-big.svg"
+              src="../src/assets/images/close-big.svg"
               alt="close"
             />
           </div>
@@ -423,7 +452,7 @@
         <div class="thanks">
           <img
             class="thanks__img"
-            src="/src/assets/images/hands-emoji.png"
+            src="../src/assets/images/hands-emoji.png"
             alt="Ручки"
           />
           <h3 class="thanks__title">Заказ успешно оформлен!</h3>
@@ -440,16 +469,166 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      isShowModal: false,
+      clothes: [
+        {
+          id: 0,
+          image: '/src/assets/images/shirt.png',
+          alt: 'Футболка',
+          span: true,
+          price: '220 Баллов',
+          title: "Футболка 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированная футболка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+
+        {
+          id: 1,
+          image: 'src/assets/images/main-img.png',
+          alt: 'Толстовка',
+          span: true,
+          price: '250 Баллов',
+          title: "Толстовка 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированная толстовка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+
+        {
+          id: 2,
+          image: 'src/assets/images/socks.png',
+          alt: 'Носки',
+          span: false,
+          price: '190 Баллов',
+          title: "Носки 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированные носки от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+        {
+          id: 3,
+          image: 'src/assets/images/socks.png',
+          alt: 'Носки',
+          span: false,
+          price: '120 Баллов',
+          title: "Носки 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированные носки от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+        {
+          id: 4,
+          image: 'src/assets/images/socks.png',
+          alt: 'Носки',
+          span: false,
+          price: '145 Баллов',
+          title: "Носки 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированные носки от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+
+        {
+          id: 5,
+          image: 'src/assets/images/socks.png',
+          alt: 'Носки',
+          span: false,
+          price: '135 Баллов',
+          title: "Носки 'Эволюционируй или сдохни'",
+          size: 'Размеры S/M/L',
+          details:
+            'Брендированные носки от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%',
+        },
+      ],
+      accesories: [
+        {
+          id: 6,
+          image: 'src/assets/images/bottle.png',
+          alt: 'Бутылка',
+          span: false,
+          price: '190 Баллов',
+          title: "Бутылка 'Kolesa Group'",
+          size: 'Объем 0,7 литра',
+          details: 'Брендированная бутылка от Qazaq Republic. Объем 0,7 литра',
+        },
+
+        {
+          id: 7,
+          image: 'src/assets/images/acc1.jpg',
+          alt: 'Бутылка',
+          span: true,
+          price: '150 Баллов',
+          title: 'Портмоне',
+          size: '',
+          details: 'Брендированное Портмоне от Qazaq Republic.',
+        },
+
+        {
+          id: 8,
+          image: 'src/assets/images/acc2.jpg',
+          alt: 'Бутылка',
+          span: true,
+          price: '130 Баллов',
+          title: 'Чехол для Iphone',
+          size: '',
+          details: 'Брендированный чехол для iPhone.',
+        },
+        {
+          id: 9,
+          image: 'src/assets/images/acc2.jpg',
+          alt: 'Бутылка',
+          span: false,
+          price: '120 Баллов',
+          title: 'Чехол для Iphone',
+          size: '',
+          details: 'Брендированный чехол для iPhone.',
+        },
+        {
+          id: 10,
+          image: 'src/assets/images/acc2.jpg',
+          alt: 'Бутылка',
+          span: false,
+          price: '125 Баллов',
+          title: 'Чехол для Iphone',
+          size: '',
+          details: 'Брендированный чехол для iPhone.',
+        },
+        {
+          id: 11,
+          image: 'src/assets/images/acc2.jpg',
+          alt: 'Бутылка',
+          span: false,
+          price: '110 Баллов',
+          title: 'Чехол для Iphone',
+          size: '',
+          details: 'Брендированный чехол для iPhone.',
+        },
+      ],
+    };
+  },
+  computed: {
+    allItems() {
+      return [...this.clothes, ...this.accesories];
+    },
+    isNew() {
+      return <span class="new">new</span>;
+    },
+  },
+  methods: {
+    openModal() {
+      this.isShowModal = true;
+    },
+    closeModal() {
+      this.isShowModal = false;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "../src/css/reset.css";
+@import "../src/scss/style.scss";
 </style>
