@@ -210,27 +210,17 @@
                   />Подарить баллы</a
                 >
               </div>
-              <div class="main__tabs">
+              <div
+              class="main__tabs">
                 <button
-                  data-key="all"
-                  class="js__main-tab main__tab main__tab--active"
+                  v-for="tab in tabs"
+                  :key="tab.key"
+                  class="main__tab"
+                  :class="{main__tabactive: tab.key === activeTabKey }"
+                  @click="myFilter(tab)"
                   href="#"
-                >
-                  Все товары
-                </button>
-                <button
-                  data-key="clothes"
-                  class="js__main-tab main__tab"
-                  href="#"
-                >
-                  Одежда
-                </button>
-                <button
-                  data-key="accesories"
-                  class="js__main-tab main__tab"
-                  href="#"
-                >
-                  Аксессуары
+                  >
+                  {{tab.name}}
                 </button>
               </div>
               <div
@@ -475,6 +465,8 @@ export default {
   data() {
     return {
       isShowModal: false,
+      isActive: false,
+      activeTabKey: 'all',
       clothes: [
         {
           id: 0,
@@ -610,6 +602,20 @@ export default {
           details: 'Брендированный чехол для iPhone.',
         },
       ],
+      tabs: [
+        {
+          key: 'all',
+          name: 'Все товары',
+        },
+        {
+          key: 'clothes',
+          name: 'Одежда',
+        },
+        {
+          key: 'accesories',
+          name: 'Аксессуары',
+        },
+      ],
     };
   },
   computed: {
@@ -627,6 +633,9 @@ export default {
     getImgUrl(item) {
       // eslint-disable-next-line global-require,import/no-dynamic-require,import/extensions
       return require(`./assets/images/${item}`);
+    },
+    myFilter(tab) {
+      this.activeTabKey = tab.key;
     },
   },
 };
