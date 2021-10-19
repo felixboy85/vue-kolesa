@@ -244,7 +244,7 @@
                 >
                   <div class="main__goods-pic">
                     <img class="main__goods-img"
-                    :src="item.image"
+                    :src="getImgUrl(item.image)"
                     :alt="item.alt" />
                     ${span ? '<span class="new">new</span>' : ''}
                   </div>
@@ -472,10 +472,11 @@ export default {
   data() {
     return {
       isShowModal: false,
+      isNew: false,
       clothes: [
         {
           id: 0,
-          image: '/src/assets/images/shirt.png',
+          image: 'shirt.png',
           alt: 'Футболка',
           span: true,
           price: '220 Баллов',
@@ -487,7 +488,7 @@ export default {
 
         {
           id: 1,
-          image: 'src/assets/images/main-img.png',
+          image: 'main-img.png',
           alt: 'Толстовка',
           span: true,
           price: '250 Баллов',
@@ -499,7 +500,7 @@ export default {
 
         {
           id: 2,
-          image: 'src/assets/images/socks.png',
+          image: 'socks.png',
           alt: 'Носки',
           span: false,
           price: '190 Баллов',
@@ -510,7 +511,7 @@ export default {
         },
         {
           id: 3,
-          image: 'src/assets/images/socks.png',
+          image: 'socks.png',
           alt: 'Носки',
           span: false,
           price: '120 Баллов',
@@ -521,7 +522,7 @@ export default {
         },
         {
           id: 4,
-          image: 'src/assets/images/socks.png',
+          image: 'socks.png',
           alt: 'Носки',
           span: false,
           price: '145 Баллов',
@@ -533,7 +534,7 @@ export default {
 
         {
           id: 5,
-          image: 'src/assets/images/socks.png',
+          image: 'socks.png',
           alt: 'Носки',
           span: false,
           price: '135 Баллов',
@@ -546,7 +547,7 @@ export default {
       accesories: [
         {
           id: 6,
-          image: 'src/assets/images/bottle.png',
+          image: 'bottle.png',
           alt: 'Бутылка',
           span: false,
           price: '190 Баллов',
@@ -557,7 +558,7 @@ export default {
 
         {
           id: 7,
-          image: 'src/assets/images/acc1.jpg',
+          image: 'acc1.jpg',
           alt: 'Бутылка',
           span: true,
           price: '150 Баллов',
@@ -568,7 +569,7 @@ export default {
 
         {
           id: 8,
-          image: 'src/assets/images/acc2.jpg',
+          image: 'acc2.jpg',
           alt: 'Бутылка',
           span: true,
           price: '130 Баллов',
@@ -578,7 +579,7 @@ export default {
         },
         {
           id: 9,
-          image: 'src/assets/images/acc2.jpg',
+          image: 'acc2.jpg',
           alt: 'Бутылка',
           span: false,
           price: '120 Баллов',
@@ -588,7 +589,7 @@ export default {
         },
         {
           id: 10,
-          image: 'src/assets/images/acc2.jpg',
+          image: 'acc2.jpg',
           alt: 'Бутылка',
           span: false,
           price: '125 Баллов',
@@ -598,7 +599,7 @@ export default {
         },
         {
           id: 11,
-          image: 'src/assets/images/acc2.jpg',
+          image: 'acc2.jpg',
           alt: 'Бутылка',
           span: false,
           price: '110 Баллов',
@@ -613,9 +614,6 @@ export default {
     allItems() {
       return [...this.clothes, ...this.accesories];
     },
-    isNew() {
-      return <span class="new">new</span>;
-    },
   },
   methods: {
     openModal() {
@@ -624,6 +622,11 @@ export default {
     closeModal() {
       this.isShowModal = false;
     },
+    getImgUrl(item) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require,import/extensions
+      return require(`./assets/images/${item}`);
+    },
+
   },
 };
 </script>
