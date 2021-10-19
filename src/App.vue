@@ -235,11 +235,11 @@
               </div>
               <div
                 class="main__goods main__goods--active"
-                v-for="item in allItems"
-                :key="item.id"
               >
                 <div
                   :data-id="item.id"
+                  v-for="item in allItems"
+                  :key="item.id"
                   class="main__goods-item main__goods-item--new"
                 >
                   <div class="main__goods-pic">
@@ -308,8 +308,11 @@
 
       <!-- Modal -->
       <div :class="{show: isShowModal}"
+      @click="closeModal"
       class="overlay">
-        <div class="modal">
+        <div
+        @click.stop
+        class="modal">
           <!-- <div class="modal__top">
                     <button class="modal__back-btn">
                         <img class="modal__back-img"
@@ -611,7 +614,7 @@ export default {
   },
   computed: {
     allItems() {
-      return [...this.clothes, ...this.accesories];
+      return [...this.clothes, ...this.accesories].sort((a, b) => Number(b.span) - Number(a.span));
     },
   },
   methods: {
