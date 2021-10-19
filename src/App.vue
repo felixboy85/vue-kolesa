@@ -246,7 +246,7 @@
                     <img class="main__goods-img"
                     :src="getImgUrl(item.image)"
                     :alt="item.alt" />
-                    ${span ? '<span class="new">new</span>' : ''}
+                    <span v-if="item.span" class="new">new</span>
                   </div>
                   <div class="main__goods-descr">
                     <div class="main__goods-price">{{item.price}}</div>
@@ -472,7 +472,6 @@ export default {
   data() {
     return {
       isShowModal: false,
-      isNew: false,
       clothes: [
         {
           id: 0,
@@ -626,7 +625,6 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require,import/extensions
       return require(`./assets/images/${item}`);
     },
-
   },
 };
 </script>
