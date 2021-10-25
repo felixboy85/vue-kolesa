@@ -15,29 +15,23 @@
 <script>
 export default {
   name: 'MyFilter',
-  data() {
-    return {
-      activeTabKey: 'all',
-      tabs: [
-        {
-          key: 'all',
-          name: 'Все товары',
-        },
-        {
-          key: 'clothes',
-          name: 'Одежда',
-        },
-        {
-          key: 'accesories',
-          name: 'Аксессуары',
-        },
-      ],
-    };
+  model: {
+    event: 'change',
+    prop: 'activeTabKey',
+  },
+  props: {
+    activeTabKey: {
+      type: String,
+      required: true,
+    },
+    tabs: {
+      type: Array,
+      required: true,
+    },
   },
   methods: {
     myFilter(tab) {
-      this.activeTabKey = tab.key;
-      this.$emit('change', tab);
+      this.$emit('change', tab.key);
     },
   },
 };

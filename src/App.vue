@@ -64,34 +64,18 @@
                 />
               </div>
               <HotButtons></HotButtons>
-              <MyFilter @change="handleChange"></MyFilter>
-              <div class="main__goods main__goods--active">
-                <div
-                  :data-id="item.id"
-                  v-for="item in filterItems"
-                  :key="item.id"
-                  :isActiveTab="activeTabKey"
-                  class="main__goods-item main__goods-item--new"
-                >
-                  <div class="main__goods-pic">
-                    <img class="main__goods-img"
-                    :src="getImgUrl(item.image)"
-                    :alt="item.alt" />
-                    <span v-if="item.span" class="new">new</span>
-                  </div>
-                  <div class="main__goods-descr">
-                    <div class="main__goods-price">{{item.price}}</div>
-                    <h3 class="main__goods-title">{{item.title}}</h3>
-                    <p class="main__goods-size">{{item.size}}</p>
-                    <button
-                      @click="openModal"
-                      class="main__btn main__btn-goods visual-hidden"
-                    >
-                      Заказать
-                    </button>
-                  </div>
+              <MyFilter v-model="activeTabKey" :tabs="tabs"></MyFilter>
+              <div
+                  class="main__goods main__goods--active">
+                  <CardItem
+                    v-for="good in filterItems"
+                    :good="good"
+                    :url="getImgUrl"
+                    :key="good.id"
+                    @show="handleShowModal"
+                  >
+                  </CardItem>
                 </div>
-              </div>
               <div class="main__clothes d-none"></div>
               <div class="main__acc d-none"></div>
             </div>
@@ -99,10 +83,10 @@
         </div>
       </section>
       <Footer></Footer>
-      <modal
+      <Modal
       :isOpen="isShowModal"
       @close="closeModal"
-      ></modal>
+      ></Modal>
       <!-- Modal 2 -->
       <div class="overlay__thanks">
         <div class="thanks">
@@ -130,6 +114,7 @@ import Sidebar from './components/Sidebar.vue';
 import MobileMenu from './components/MobileMenu.vue';
 import HotButtons from './components/HotButtons.vue';
 import MyFilter from './components/MyFilter.vue';
+import CardItem from './components/CardItem.vue';
 import Footer from './components/Footer.vue';
 
 export default {
@@ -142,6 +127,7 @@ export default {
     MobileMenu,
     HotButtons,
     MyFilter,
+    CardItem,
     Footer,
   },
   data() {
@@ -149,6 +135,7 @@ export default {
       isActive: false,
       isShowModal: false,
       activeTabKey: 'all',
+      aciveCardItem: {},
       clothes: [
         {
           id: 0,
@@ -284,6 +271,20 @@ export default {
           details: 'Брендированный чехол для iPhone.',
         },
       ],
+      tabs: [
+        {
+          key: 'all',
+          name: 'Все товары',
+        },
+        {
+          key: 'clothes',
+          name: 'Одежда',
+        },
+        {
+          key: 'accesories',
+          name: 'Аксессуары',
+        },
+      ],
     };
   },
   computed: {
@@ -315,6 +316,10 @@ export default {
     },
     handleChange(tab) {
       this.activeTabKey = tab.key;
+    },
+    handleShowModal(cardItem) {
+      this.aciveCardItem = cardItem;
+      this.isShowModal = true;
     },
   },
 };

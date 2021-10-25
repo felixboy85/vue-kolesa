@@ -1,0 +1,41 @@
+<template>
+  <div>
+    <div class="main__goods-item main__goods-item--new">
+      <div class="main__goods-pic">
+        <img class="main__goods-img" :src='url(good.image)' :alt='good.alt' />
+        <span v-if='good.span' class="new">new</span>
+      </div>
+      <div class="main__goods-descr">
+        <div class="main__goods-price">{{ good.price }}</div>
+        <h3 class="main__goods-title">{{ good.title }}</h3>
+        <p class="main__goods-size">{{ good.size }}</p>
+        <button class="main__btn main__btn-goods visual-hidden" @click="openModal">
+          Заказать
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CardItem',
+  model: {
+    event: 'show',
+    prop: 'isShowModal',
+  },
+  props: {
+    good: {
+      type: Object,
+    },
+    url: Function,
+    isShowModal: Boolean,
+  },
+  methods: {
+    openModal() {
+      console.log('clicked');
+      this.$emit('show');
+    },
+  },
+};
+</script>
