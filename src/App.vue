@@ -69,9 +69,12 @@
                   class="main__goods main__goods--active">
                   <CardItem
                     v-for="good in filterItems"
+                    :data="openCard"
                     :good="good"
                     :url="getImgUrl"
                     :key="good.id"
+                    :dataCard="modalData"
+                    @get="openCard"
                     @show="handleShowModal"
                   >
                   </CardItem>
@@ -84,6 +87,8 @@
       </section>
       <Footer></Footer>
       <Modal
+      :url="getImgUrl"
+      :data="modalData"
       :isOpen="isShowModal"
       @close="closeModal"
       ></Modal>
@@ -135,7 +140,7 @@ export default {
       isActive: false,
       isShowModal: false,
       activeTabKey: 'all',
-      aciveCardItem: {},
+      modalData: {},
       clothes: [
         {
           id: 0,
@@ -222,7 +227,7 @@ export default {
         {
           id: 7,
           image: 'acc1.jpg',
-          alt: 'Бутылка',
+          alt: 'Портмоне',
           span: true,
           price: '150 Баллов',
           title: 'Портмоне',
@@ -233,7 +238,7 @@ export default {
         {
           id: 8,
           image: 'acc2.jpg',
-          alt: 'Бутылка',
+          alt: 'Чехол',
           span: true,
           price: '130 Баллов',
           title: 'Чехол для Iphone',
@@ -243,7 +248,7 @@ export default {
         {
           id: 9,
           image: 'acc2.jpg',
-          alt: 'Бутылка',
+          alt: 'Чехол',
           span: false,
           price: '120 Баллов',
           title: 'Чехол для Iphone',
@@ -253,7 +258,7 @@ export default {
         {
           id: 10,
           image: 'acc2.jpg',
-          alt: 'Бутылка',
+          alt: 'Чехол',
           span: false,
           price: '125 Баллов',
           title: 'Чехол для Iphone',
@@ -263,7 +268,7 @@ export default {
         {
           id: 11,
           image: 'acc2.jpg',
-          alt: 'Бутылка',
+          alt: 'Чехол',
           span: false,
           price: '110 Баллов',
           title: 'Чехол для Iphone',
@@ -301,6 +306,10 @@ export default {
     },
   },
   methods: {
+    openCard(data) {
+      this.openModal();
+      this.modalData = data;
+    },
     openModal() {
       this.isShowModal = true;
     },

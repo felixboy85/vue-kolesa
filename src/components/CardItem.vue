@@ -9,7 +9,7 @@
         <div class="main__goods-price">{{ good.price }}</div>
         <h3 class="main__goods-title">{{ good.title }}</h3>
         <p class="main__goods-size">{{ good.size }}</p>
-        <button class="main__btn main__btn-goods visual-hidden" @click="openModal">
+        <button class="main__btn main__btn-goods visual-hidden" @click="openCard(good)">
           Заказать
         </button>
       </div>
@@ -32,8 +32,10 @@ export default {
     isShowModal: Boolean,
   },
   methods: {
+    openCard(data) {
+      this.$emit('get', data);
+    },
     openModal() {
-      console.log('clicked');
       this.$emit('show');
     },
   },

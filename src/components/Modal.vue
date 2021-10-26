@@ -27,8 +27,8 @@
       <div class="modal__left">
         <img
           class="modal__img"
-          src="@/assets/images/main-img.png"
-          alt="Толстовка"
+          :src='url(data.image)'
+          :alt='data.alt'
         />
         <div class="modal__thumbnails">
           <img
@@ -49,10 +49,10 @@
         </div>
       </div>
       <div class="modal__right">
-        <div class="modal__title">Футболка "Эволюционируй или сдохни"</div>
+        <div class="modal__title">{{data.title}}</div>
         <div class="modal__item-wrapper">
           <div class="modal__item-info">
-            <div class="modal__item-price">100 баллов</div>
+            <div class="modal__item-price">{{data.price}}</div>
             <a href="#" class="main__btn main__btn--yellow"
               >Попросить 50 баллов</a
             >
@@ -121,8 +121,7 @@
         <div class="details">
           <h3 class="details__title">Детали:</h3>
           <p class="detail__descr">
-            Брендированная толстовка от Qazaq Republic. Материал: Хлопок 80%,
-            Вискоза 20%
+            {{data.details}}
           </p>
         </div>
         <div class="question">
@@ -147,6 +146,8 @@ export default {
   name: 'Modal',
   props: {
     isOpen: Boolean,
+    data: Object,
+    url: Function,
   },
   data() {
     return {
