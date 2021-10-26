@@ -19,7 +19,8 @@
                   src="../src/assets/images/header_logo.svg"
                   alt="Kolesa Logo"
               /></a>
-             <search></search>
+             <Search :modelValue="value"
+                      @update:modelValue="value = $event"></Search>
             </div>
             <user></user>
             <form class="header__right-search">
@@ -90,6 +91,7 @@
       :url="getImgUrl"
       :data="modalData"
       :isOpen="isShowModal"
+      @order="setScore"
       @close="closeModal"
       ></Modal>
       <!-- Modal 2 -->
@@ -137,13 +139,16 @@ export default {
   },
   data() {
     return {
+      value: '',
       isActive: false,
       isShowModal: false,
       activeTabKey: 'all',
       modalData: {},
+      score: 500,
       clothes: [
         {
           id: 0,
+          cost: 50,
           image: 'shirt.png',
           alt: 'Футболка',
           span: true,
@@ -329,6 +334,14 @@ export default {
     handleShowModal(cardItem) {
       this.aciveCardItem = cardItem;
       this.isShowModal = true;
+    },
+    setScore(cost) {
+      this.closeModal();
+      this.score -= cost;
+      console.log(cost);
+    },
+    setSearch(data) {
+      this.search = data;
     },
   },
 };

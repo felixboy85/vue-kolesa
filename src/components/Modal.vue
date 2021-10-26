@@ -52,8 +52,8 @@
         <div class="modal__title">{{data.title}}</div>
         <div class="modal__item-wrapper">
           <div class="modal__item-info">
-            <div class="modal__item-price">{{data.price}}</div>
-            <a href="#" class="main__btn main__btn--yellow"
+            <div class="modal__item-price">{{data.cost}} Баллов</div>
+            <a href="#" class="main__btn main__btn--yellow" @click="order"
               >Попросить 50 баллов</a
             >
           </div>
@@ -157,6 +157,9 @@ export default {
   methods: {
     closeModal() {
       this.$emit('close');
+    },
+    order() {
+      this.$emit('order', this.data.cost);
     },
   },
 };
