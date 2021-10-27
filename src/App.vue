@@ -22,7 +22,7 @@
              <Search :modelValue="value"
                       @update:modelValue="value = $event"></Search>
             </div>
-            <user></user>
+            <User :user='user'></User>
             <form class="header__right-search">
               <input
                 class="header__right-input"
@@ -114,6 +114,8 @@
 </template>
 
 <script>
+import axios from './axios';
+
 import Modal from './components/Modal.vue';
 import User from './components/User.vue';
 import Search from './components/Search.vue';
@@ -295,6 +297,7 @@ export default {
           name: 'Аксессуары',
         },
       ],
+      user: [],
     };
   },
   computed: {
@@ -309,6 +312,28 @@ export default {
       }
       return [...this.clothes, ...this.accesories].sort((a, b) => Number(b.span) - Number(a.span));
     },
+  },
+  watch: {
+    score() {
+      this.showCost();
+    },
+  },
+  mounted() {
+    axios.get('templates/-_RLsEGjof6i/data')
+      .then((response) => {
+        this.clothes = response.data;
+        console.log('clothes', this.clothes);
+      });
+    axios.get('templates/q3OPxRyEcPvP/data')
+      .then((response) => {
+        this.accesories = response.data;
+        console.log('acc', this.accesories);
+      });
+    axios.get('templates/7ZW3y5GAuIge/data')
+      .then((response) => {
+        this.user = response.data;
+        console.log('user', this.user);
+      });
   },
   methods: {
     openCard(data) {
@@ -335,13 +360,20 @@ export default {
       this.aciveCardItem = cardItem;
       this.isShowModal = true;
     },
-    setScore(cost) {
+    setScore(price) {
       this.closeModal();
-      this.score -= cost;
-      console.log(cost);
+      if (this.user.score < price) {
+        alert('денег нет, иди работай');
+      } else {
+        this.user.score -= price;
+        console.log(price);
+      }
     },
     setSearch(data) {
       this.search = data;
+    },
+    showCost() {
+      alert(this.score);
     },
   },
 };

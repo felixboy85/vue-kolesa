@@ -7,12 +7,12 @@
               >
                 <img
                   class="header__ava"
-                  src="../assets/images/user.png"
+                  :src='user.avatarUrl'
                   alt="Деда Рик"
                 />
                 <div class="header__user-info">
-                  <div class="header__username">Деда Рик</div>
-                  <div class="header__userpoints">300 баллов</div>
+                  <div class="header__username">{{user.name}}</div>
+                  <div class="header__userpoints">{{user.score}} баллов</div>
                 </div>
               </a>
             </div>
@@ -21,5 +21,8 @@
 <script>
 export default {
   name: 'User',
+  props: {
+    user: Object,
+  },
 };
 </script>

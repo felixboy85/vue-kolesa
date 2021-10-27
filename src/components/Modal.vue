@@ -27,7 +27,7 @@
       <div class="modal__left">
         <img
           class="modal__img"
-          :src='url(data.image)'
+          :src='(data.mainImage)'
           :alt='data.alt'
         />
         <div class="modal__thumbnails">
@@ -52,7 +52,7 @@
         <div class="modal__title">{{data.title}}</div>
         <div class="modal__item-wrapper">
           <div class="modal__item-info">
-            <div class="modal__item-price">{{data.cost}} Баллов</div>
+            <div class="modal__item-price">{{data.price}} Баллов</div>
             <a href="#" class="main__btn main__btn--yellow" @click="order"
               >Попросить 50 баллов</a
             >
@@ -121,7 +121,7 @@
         <div class="details">
           <h3 class="details__title">Детали:</h3>
           <p class="detail__descr">
-            {{data.details}}
+            {{data.description}}
           </p>
         </div>
         <div class="question">
@@ -159,7 +159,7 @@ export default {
       this.$emit('close');
     },
     order() {
-      this.$emit('order', this.data.cost);
+      this.$emit('order', this.data.price);
     },
   },
 };
