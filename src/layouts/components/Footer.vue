@@ -8,19 +8,19 @@
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="../assets/images/instagram.svg"
+                    src="@/assets/images/instagram.svg"
                     alt="Инстаграм"
                 /></a>
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="../assets/images/youtube.svg"
+                    src="@/assets/images/youtube.svg"
                     alt="Ютюб"
                 /></a>
                 <a class="footer__social-link" href="#"
                   ><img
                     class="footer__social-img"
-                    src="../assets/images/vk.svg"
+                    src="@/assets/images/vk.svg"
                     alt="Вконтакте"
                 /></a>
               </div>

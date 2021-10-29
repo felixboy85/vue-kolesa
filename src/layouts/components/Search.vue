@@ -10,7 +10,7 @@
     <button class="header__search">
       <img
         class="header__img"
-        src="../assets/images/search-icon.svg"
+        src="@/assets/images/search-icon.svg"
         alt="Поиск"
       />
     </button>
