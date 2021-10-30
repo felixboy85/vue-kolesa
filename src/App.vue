@@ -23,8 +23,7 @@
                       @update:modelValue="value = $event">
               </Search>
             </div>
-            <User :user='user'
-                  @updateUser="updateUser"></User>
+            <User @updateUser="updateUser"></User>
             <form class="header__right-search">
               <input
                 class="header__right-input"
@@ -52,7 +51,6 @@
           <div class="main__wrapper">
             <sidebar></sidebar>
             <router-view
-              :user="user"
               @updateUser="updateUser"
             ></router-view>
             <!-- <div class="main__shop">
@@ -129,11 +127,6 @@ export default {
   data() {
     return {
       value: '',
-      user: {
-        avatarUrl: '',
-        score: 0,
-        name: '',
-      },
     };
   },
   watch: {

@@ -159,7 +159,13 @@ export default {
       this.$emit('close');
     },
     order() {
-      this.$emit('order', this.data.price);
+      const { score } = this.$store.state.userInfo;
+      if (score - this.data.price <= 0) {
+        alert('Баллов нет, иди работай');
+
+        return;
+      }
+      this.$store.commit('setNewScore', this.data.price);
     },
   },
 };

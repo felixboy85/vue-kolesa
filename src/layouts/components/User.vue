@@ -1,38 +1,31 @@
 <template>
   <div class="header__right">
     <a class="header__user" href="http://www.google.com" target="_blank">
-      <img class="header__ava" :src="user.avatarUrl" alt="Деда Рик" />
+      <img class="header__ava" :src="userInfo.avatarUrl" alt="Деда Рик" />
       <div class="header__user-info">
-        <div class="header__username">{{ user.name }}</div>
-        <div class="header__userpoints">{{ user.score }} баллов</div>
+        <div class="header__username">{{ userInfo.name }}</div>
+        <div class="header__userpoints">{{ userInfo.score }} баллов</div>
       </div>
     </a>
   </div>
 </template>
 
 <script>
-import axios from '@/axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'User',
-  data() {
-    return {
-      user: {
-        score: 0,
-        name: '',
-        avatarUrl: '',
-      },
-    };
+  computed: {
+    ...mapState({
+      userInfo: 'userInfo',
+    }),
   },
   mounted() {
-    axios.get('templates/7ZW3y5GAuIge/data').then((response) => {
-      this.user = response.data;
-      console.log('user', response.data);
-    });
+    this.fetchUser();
   },
   methods: {
-    updateUser(data) {
-      this.$emit('updateUser', data);
+    fetchUser() {
+      this.$store.dispatch('fetchUserInfo');
     },
   },
 };
