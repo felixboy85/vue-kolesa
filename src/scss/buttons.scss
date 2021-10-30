@@ -16,6 +16,12 @@
     box-shadow: 0 2px 4px rgba(28, 24, 25, 0.1);
     cursor: pointer;
 
+    &--small {
+        min-width: 134px;
+        height: 36px;
+        font-size: 14px;
+    }    
+
     &--yellow {
         height: 36px;
         background-color: $yellow;

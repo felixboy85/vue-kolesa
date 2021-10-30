@@ -51,9 +51,6 @@ import Modal from './components/Modal.vue';
 
 export default {
   name: 'Shop',
-  props: {
-    user: Object,
-  },
   components: {
     Modal,
     HotButtons,
@@ -248,10 +245,6 @@ export default {
     axios.get('templates/q3OPxRyEcPvP/data').then((response) => {
       this.accesories = response.data;
     });
-    axios.get('templates/7ZW3y5GAuIge/data').then((response) => {
-      this.user = response.data;
-      console.log('user', response.data);
-    });
   },
   methods: {
     openCard(data) {
@@ -292,9 +285,6 @@ export default {
     },
     showCost() {
       alert(this.score);
-    },
-    updateUser() {
-      this.$emit('updateUser');
     },
   },
 };
