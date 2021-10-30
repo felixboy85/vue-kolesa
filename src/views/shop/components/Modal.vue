@@ -59,7 +59,7 @@
           </div>
           <div class="modal__item-balance">
             <div class="modal__item-supheader">Твой баланс:</div>
-            <div class="modal__item-points">50 баллов</div>
+            <div class="modal__item-points">{{this.$store.state.userInfo.score}} баллов</div>
           </div>
         </div>
         <form class="modal__form" action="#">
@@ -161,6 +161,7 @@ export default {
     order() {
       const { score } = this.$store.state.userInfo;
       if (score - this.data.price <= 0) {
+        // eslint-disable-next-line
         alert('Баллов нет, иди работай');
 
         return;

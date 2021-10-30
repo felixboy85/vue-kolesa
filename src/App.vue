@@ -53,38 +53,6 @@
             <router-view
               @updateUser="updateUser"
             ></router-view>
-            <!-- <div class="main__shop">
-              <div class="banner">
-                <img
-                  class="banner__img"
-                  src="../src/assets/images/banner.jpg"
-                  alt="Баннер"
-                />
-                <img
-                  class="banner__img-small"
-                  src="../src/assets/images/banner-small.jpg"
-                  alt="Баннер"
-                />
-              </div>
-              <HotButtons></HotButtons>
-              <MyFilter v-model="activeTabKey" :tabs="tabs"></MyFilter>
-              <div
-                  class="main__goods main__goods--active">
-                  <CardItem
-                    v-for="good in filterItems"
-                    :data="openCard"
-                    :good="good"
-                    :url="getImgUrl"
-                    :key="good.id"
-                    :dataCard="modalData"
-                    @get="openCard"
-                    @show="handleShowModal"
-                  >
-                  </CardItem>
-                </div>
-              <div class="main__clothes d-none"></div>
-              <div class="main__acc d-none"></div>
-            </div> -->
           </div>
         </div>
       </section>
@@ -139,19 +107,8 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require,import/extensions
       return require(`./assets/images/${item}`);
     },
-    setScore(price) {
-      this.closeModal();
-      if (this.user.score < price) {
-        alert('денег нет, иди работай');
-      } else {
-        this.user.score -= price;
-        console.log(price);
-      }
-    },
-    setSearch(data) {
-      this.search = data;
-    },
     showCost() {
+      // eslint-disable-next-line
       alert(this.score);
     },
     updateUser(data) {
