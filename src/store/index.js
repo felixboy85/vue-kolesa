@@ -30,19 +30,22 @@ export default new Vuex.Store({
   },
   actions: {
     fetchUserInfo({ commit }) {
-      axios.get('templates/7ZW3y5GAuIge/data').then(({ data }) => {
+      const clothes = { url: 'templates/7ZW3y5GAuIge/data' };
+      axios.get(clothes.url).then(({ data }) => {
         if (data && Object.keys(data).length) {
           commit('updateUserInfo', data);
         }
       });
     },
     fetchClothesInfo({ commit }) {
-      axios.get('templates/-_RLsEGjof6i/data').then((response) => {
+      const acc = { url: 'templates/-_RLsEGjof6i/data' };
+      axios.get(acc.url).then((response) => {
         commit('updateClothes', response.data);
       });
     },
     fetchAccInfo({ commit }) {
-      axios.get('templates/q3OPxRyEcPvP/data').then((response) => {
+      const user = { url: 'templates/q3OPxRyEcPvP/data' };
+      axios.get(user.url).then((response) => {
         commit('updateAcc', response.data);
       });
     },
