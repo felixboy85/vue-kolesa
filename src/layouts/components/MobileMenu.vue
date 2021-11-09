@@ -6,14 +6,14 @@
           <a class="hamburger__menu-logo__link" href="#"
             ><img
               class="hamburger__menu-img"
-              src="../assets/images/header_logo.svg"
+              src="@/assets/images/header_logo.svg"
               alt="Логотип"
           /></a>
         </div>
         <a class="hamburger__menu-user">
           <img
             class="hamburger__menu-ava"
-            src="../assets/images/user.png"
+            src="@/assets/images/user.png"
             alt="Аватарка"
           />
           <div class="hamburger__menu-name">

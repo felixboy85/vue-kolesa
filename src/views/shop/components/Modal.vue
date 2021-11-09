@@ -53,13 +53,13 @@
         <div class="modal__item-wrapper">
           <div class="modal__item-info">
             <div class="modal__item-price">{{data.price}} Баллов</div>
-            <a href="#" class="main__btn main__btn--yellow" @click="order"
-              >Попросить 50 баллов</a
+            <a href="#" class="main__btn main__btn--small" @click="order"
+              >Заказать</a
             >
           </div>
           <div class="modal__item-balance">
             <div class="modal__item-supheader">Твой баланс:</div>
-            <div class="modal__item-points">50 баллов</div>
+            <div class="modal__item-points">{{this.$store.state.userInfo.score}} баллов</div>
           </div>
         </div>
         <form class="modal__form" action="#">
@@ -159,7 +159,14 @@ export default {
       this.$emit('close');
     },
     order() {
-      this.$emit('order', this.data.price);
+      const { score } = this.$store.state.userInfo;
+      if (score - this.data.price <= 0) {
+        // eslint-disable-next-line
+        alert('Баллов нет, иди работай');
+
+        return;
+      }
+      this.$store.commit('setNewScore', this.data.price);
     },
   },
 };
