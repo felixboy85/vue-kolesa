@@ -35,19 +35,19 @@ export default new Vuex.Store({
         if (data && Object.keys(data).length) {
           commit('updateUserInfo', data);
         }
-      });
+      }).catch((error) => console.log('Something wrong', error));
     },
     fetchClothesInfo({ commit }) {
       const acc = { url: 'templates/-_RLsEGjof6i/data' };
       axios.get(acc.url).then((response) => {
         commit('updateClothes', response.data);
-      });
+      }).catch((error) => console.log('Something wrong', error));
     },
     fetchAccInfo({ commit }) {
       const user = { url: 'templates/q3OPxRyEcPvP/data' };
       axios.get(user.url).then((response) => {
         commit('updateAcc', response.data);
-      });
+      }).catch((error) => console.log('Something wrong', error));
     },
   },
 });
